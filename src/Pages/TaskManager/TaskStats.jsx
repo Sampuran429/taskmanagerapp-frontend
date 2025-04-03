@@ -1,7 +1,7 @@
 // TaskStats.jsx
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 const TaskStats = () => {
   const { tasks } = useSelector((state) => state.tasks);

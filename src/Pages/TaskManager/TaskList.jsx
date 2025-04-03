@@ -5,8 +5,8 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import TaskItem from "./TaskItem";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
+import { DragDropContext,Droppable } from "@hello-pangea/dnd";
 const TaskList = () => {
   const dispatch = useDispatch();
   const { tasks, loading, error } = useSelector((state) => state.tasks);

@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "@/redux/slices/taskSlice";
 import axios from "axios";
-import { Draggable } from "react-beautiful-dnd";
-import { format } from "date-fns";
+import { Draggable } from "@hello-pangea/dnd";
+
 import { 
   Card, 
   CardHeader, 
