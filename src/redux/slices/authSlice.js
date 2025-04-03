@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+const API_BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/users`;
 
 // Signup function
 export const signup = createAsyncThunk("auth/signup", async (formData, thunkAPI) => {
