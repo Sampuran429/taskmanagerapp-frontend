@@ -40,7 +40,7 @@ const TaskList = () => {
     
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`http://localhost:5000/tasks/get-task/${taskId}`, {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/tasks/get-task/${taskId}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`

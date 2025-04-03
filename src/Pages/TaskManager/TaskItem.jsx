@@ -25,6 +25,8 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Calendar, MoreVertical, Edit, Trash, Clipboard, ClipboardCheck } from "lucide-react";
 import TaskForm from "./TaskForm";
 
+
+
 const statusColors = {
   "in-progress": "bg-blue-100 text-blue-800",
   "completed": "bg-green-100 text-green-800",
@@ -66,7 +68,7 @@ const TaskItem = ({ task: initialTask, index, onTaskUpdate }) => {
       }
       
       const response = await axios.put(
-        `http://localhost:5000/tasks/update-task/${taskId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/tasks/update-task/${taskId}`,
         { status },
         {
           headers: {
