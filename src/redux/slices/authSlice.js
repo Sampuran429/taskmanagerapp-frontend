@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_BASE_URL = "https://taskmanagerapplicationsam.onrender.com/users"; // Hardcoded URL for testing
-
+const API_BASE_URL = "https://taskmanagerapplicationsam.onrender.com"; // Fixed: Removed extra `/`
 
 // Signup function
 export const signup = createAsyncThunk("auth/signup", async (formData, thunkAPI) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/register`, formData, { withCredentials: true });
+    const response = await axios.post(`${API_BASE_URL}/users/register`, formData, { withCredentials: true });
     localStorage.setItem("token", response.data.token); // Store token in localStorage
     return response.data;
   } catch (error) {
@@ -18,7 +17,7 @@ export const signup = createAsyncThunk("auth/signup", async (formData, thunkAPI)
 // Login function
 export const login = createAsyncThunk("auth/login", async (credentials, thunkAPI) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/login`, credentials, { withCredentials: true });
+    const response = await axios.post(`${API_BASE_URL}/users/login`, credentials, { withCredentials: true });
     localStorage.setItem("token", response.data.token); // Store token in localStorage
     return response.data;
   } catch (error) {
@@ -32,7 +31,7 @@ export const fetchUserProfile = createAsyncThunk("auth/fetchUserProfile", async 
     const token = localStorage.getItem("token");
     if (!token) throw new Error("No authentication token found.");
 
-    const response = await axios.get(`${API_BASE_URL}/profile`, {
+    const response = await axios.get(`${API_BASE_URL}/users/profile`, {
       headers: { Authorization: `Bearer ${token}` },
       withCredentials: true,
     });

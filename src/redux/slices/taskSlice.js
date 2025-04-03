@@ -1,56 +1,52 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// API Base URL
+// API Base URL (Fixed: No trailing `/`)
 const API_URL = "https://taskmanagerapplicationsam.onrender.com/tasks";
 
-
+// Fetch Tasks
 export const fetchTasks = createAsyncThunk(
-    "tasks/fetchTasks",
-    async (_, { rejectWithValue }) => {
-      try {
-        const token = localStorage.getItem("token");
-  
-        const response = await axios.get(`${API_URL}/getall`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          },
-          withCredentials: true,
-        });
-  
-        return response.data || []; // Ensure an array is returned
-      } catch (error) {
-        return rejectWithValue(error.response?.data?.message || error.message);
-      }
+  "tasks/fetchTasks",
+  async (_, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await axios.get(`${API_URL}/getall`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
+
+      return response.data || []; // Ensure an array is returned
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || error.message);
     }
-  );
-  
-  
+  }
+);
+
+// Create Task
 export const createTask = createAsyncThunk(
-    "tasks/createTask",
-    async (taskData, { rejectWithValue }) => { // Removed destructuring
-      try {
-        const token = localStorage.getItem("token"); // Fetch token from localStorage
-        const response = await axios.post(
-          `${API_URL}/create`,
-          taskData, // Pass taskData directly
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`
-            },
-            withCredentials: true,
-          }
-        );
-  
-        return response.data.task;
-      } catch (error) {
-        return rejectWithValue(error.response?.data?.message || error.message);
-      }
+  "tasks/createTask",
+  async (taskData, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await axios.post(`${API_URL}/create`, taskData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
+
+      return response.data.task;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || error.message);
     }
-  );
-  
+  }
+);
 
 // Update Task
 export const updateTask = createAsyncThunk(
@@ -89,10 +85,7 @@ export const updateTask = createAsyncThunk(
   }
 );
 
-
 // Delete Task
-
-// Delete Task Thunk
 export const deleteTask = createAsyncThunk(
   "tasks/deleteTask",
   async (taskId, { rejectWithValue }) => {
@@ -189,7 +182,7 @@ const taskSlice = createSlice({
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.tasks = state.tasks.filter(task => task._id !== action.payload);
+        state.tasks = state.tasks.filter((task) => task._id !== action.payload);
       })
       .addCase(deleteTask.rejected, (state, action) => {
         state.status = "failed";
