@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // API Base URL (Fixed: No trailing `/`)
-const API_URL = "https://taskmanagerapplicationsam.onrender.com";
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+const API_URL = `${API_BASE_URL}/tasks`;
 
 // Fetch Tasks
 export const fetchTasks = createAsyncThunk(
