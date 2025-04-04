@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../redux/slices/authSlice"; 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -74,7 +74,7 @@ const LoginForm = ({ onLogin }) => {
       </CardContent>
       <CardFooter className="flex justify-center">
         <p className="text-sm text-gray-500">
-          Don't have an account? <a href="/signup" className="text-primary hover:underline">Sign up</a>
+          Don't have an account? <Link href="/signup" className="text-primary hover:underline">Sign up</Link>
         </p>
       </CardFooter>
     </Card>

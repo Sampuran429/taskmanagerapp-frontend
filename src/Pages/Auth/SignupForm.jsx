@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../../redux/slices/authSlice"; 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -125,7 +125,7 @@ const SignupForm = ({ onSignup }) => {
       </CardContent>
       <CardFooter className="flex justify-center">
         <p className="text-sm text-gray-500">
-          Already have an account? <a href="/login" className="text-primary hover:underline">Login</a>
+          Already have an account? <Link href="/login" className="text-primary hover:underline">Login</Link>
         </p>
       </CardFooter>
     </Card>
