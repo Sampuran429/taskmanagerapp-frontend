@@ -125,7 +125,7 @@ const SignupForm = ({ onSignup }) => {
       </CardContent>
       <CardFooter className="flex justify-center">
         <p className="text-sm text-gray-500">
-          Already have an account? <Link href="/login" className="text-primary hover:underline">Login</Link>
+          Already have an account? <Link to="/login" className="text-primary hover:underline">Login</Link>
         </p>
       </CardFooter>
     </Card>
